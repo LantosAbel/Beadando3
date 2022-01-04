@@ -1,8 +1,18 @@
-#3. Hozz l�tre egy fgv-t, amelyik egy ".sav" f�jlt v�r bemenetk�nt, kimenetk�nt 
-#pedig k�sz�t minden v�ltoz�r�l egy le�r� statisztik�t, amit egy list�ba tesz bele. 
-#Ez a lista legyen a kimenet. Ha folytonos a v�ltoz�, akkor sz�r�s, �tlag, range, 
-#median az eredm�ny, ha kateg�ri�lis, akkor pedig a gyakoris�g legyen az eredm�ny.
+#3. Hozz létre egy fgv-t, amelyik egy ".sav" fájlt vár bemenetként, kimenetként 
+#pedig készít minden változóról egy leíró statisztikát, amit egy listába tesz bele. 
+#Ez a lista legyen a kimenet. Ha folytonos a változó, akkor szórás, átlag, range, 
+#median az eredmény, ha kategóriális, akkor pedig a gyakoriság legyen az eredmény.
 
+
+#Előfordultak rejtélyes hibák. Mondjuk az egyik próba adatbázison következetesen félreszámolta az egyes oszlopok átlagát meg mindenét 
+#(el nem tudom képzelni hogyan történhetett ez, hiszen ehhez valamit a sorokkal kellett volna félreszámolnia, 
+#de a függvény nem is nyúl a sorokhoz). Ennél már csak az volt a rejtélyesebb, hogy egy másik adatbázis tesztelésekor ez a hiba elmúlt, 
+#és utána már az eredeti adatbázist is jól elemezte. Szóval ha ez megint előfordulna, csak újra kell indítani a programot, és törölni 
+#mindent a global environmentből.
+#Ennél aggasztóbb, hogy a range meg egyáltalán nem akar működni. A listának szánt objektuma teljesen üres, valuenak meg azt írja, hogy
+function (..., na.rm = FALSE)  .Primitive("range") typera meg szintén azt, hogy function(primitive)
+#Feltételezem az is.numeric-el nem tetszik neki valami, mert anélkül meg működött; ugyanakkor az is.numeric meg kell, mert az méri, hogy
+#folyamatos-e a változó. Ebben segíthetne a tanár úr, hogy ez mi, a google nem volt túl hasznos.
 
 fgv <- function (a) {
   if (grepl(".sav",a)){
@@ -14,7 +24,7 @@ fgv <- function (a) {
                                 reencode= T)
     )
   }
-  else print(("nem spss f�jl"))
+  else print(("nem spss fájl"))
 
   leir= list(NULL)
   atlag= NULL
@@ -57,7 +67,7 @@ fgv <- function (a) {
     }
   }
 
-  lista <<- list(gyakoris�g=leir,�tlag=atlag,medi�n=medi,range=range,sz�r�s=sor)
+  lista <<- list(gyakoriság=leir,átlag=atlag,medián=medi,range=range,szórás=sor)
   
 }
 
